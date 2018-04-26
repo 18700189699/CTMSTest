@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script  LANGUAGE="JavaScript">
+	//检索
+	function StartSearch()
+	{
+			form1.action="StudentCtrlL.html?query=1"
+			form1.target="_self";
+			form1.submit();
+	}
+	//新建
+	function newitem() 
+	{
+	    form1.action = "StudentCtrlD.html?query=1&station=&view=new&address=";
+		form1.target="_self";
+		form1.submit();
+	}
+	//编辑
+	function Edit(value) {
+	    window.open(value, '', 'resizable=no,width=350,height=200,left=400px,top=350px');
+//	     form1.action=value;
+//		form1.target="_self";
+//		form1.submit();
+	}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<form id="form1" method="POST">
+  <input type="hidden" id="query" value="1">
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+    <tr>
+      <td><!--导航栏 开始-->
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="2%" height="24"><div align="center"><img 
+                                         src="../Images/neiye6_r8_c9.jpg" 
+                                         height="11" /></div></td>
+            
+             <script type="text/javascript">
+                if (getquerystring('view') == 'add') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 实训项目管理 -> 学生阶段评价新增</font></td>");
+                } 
+                if (getquerystring('view') == 'view') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 实训项目管理 -> 学生阶段评价查询</font></td>");
+                } 
+                if (getquerystring('view') == 'edit') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 实训项目管理 -> 学生阶段评价编辑</font></td>");
+                } 
+              </script>
+          </tr>
+          <tr>
+            <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+          </tr>
+        </table>
+        <!--导航栏 结束--></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+            <td width="10%">学生ID:</td>
+            <td width="20%">
+            <script type="text/javascript">
+                document.write(" <input type=\"text\" id=\"SSID\" value=\"" + getquerystring('SSID') + "\" readonly==\"true\" size=\"20\"/> ");
+              </script>
+            </td>
+              <td width="10%">学生姓名:</td>
+            <td width="20%">
+            <script type="text/javascript">
+                    document.write(" <input type=\"text\" id=\"name\" value=\"" + getquerystring('name') + "\" readonly==\"true\" size=\"20\"/> ");
+              </script>
+            </td>
+          </tr>
+          <!--<tr>
+            <td width="10%">参训状态:</td>
+            <td width="20%"><input type="text" id="Text2" value="" 
+              size="30"/></td>
+              <td width="10%" >参加项目:</td>
+            <td width="50%"><input type="text" id="Text3" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td colspan=5><input id="btnsearch" class="button" type="button" onClick="StartSearch();" value="检索" name="search"/>
+			<input id="btnsearch" class="button" type="button" onClick="newitem();" value="新增" name="btnnew"/></td>
+			
+          </tr>-->
+        </table></td>
+    </tr>
+    <!--<tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>-->
+    <span id="stable">
+
+    <tr>
+      <td><!--Tab 开始-->
+        <!--<table cellspacing=0 cellpadding=0 border=0>
+          <tr>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tabselectedleft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabselectedbg.png>&nbsp;
+            数据浏览&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabselectedright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tableft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabbg.png>&nbsp;<a 
+              href="#">变电站信息</a>&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+          </tr>
+        </table>-->
+        <!--Tab 结束--></td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 cellpadding=0 width="100%" border=0  align="left">
+		<tr>
+		<td  width=7%>评价：</td>
+		<td width=80%>
+		    <script type="text/javascript">
+		        if (getquerystring('view') == 'view') {
+		            document.write("<textarea id=\"TextArea1\" cols=\"70\" rows=\"10\" readonly==\"true\" value=''></textarea>");
+		            form1.TextArea1.value = "该生技术过硬，能很好的很同事以及上级进行交流，能按时保质保量完成既定任务，表现非常出色。";
+		        } else {
+		            document.write("<textarea id=\"TextArea1\" cols=\"70\" rows=\"10\" value=''></textarea>");
+		        }
+            </script>
+		</td>
+         </tr>
+          </span>
+                   <script type="text/javascript">
+                       if (getquerystring('view') != 'view') {
+                           document.write("<tr>");
+                           document.write("<td colspan=5 align=\"center\">");
+                           document.write("<br />");
+                           document.write("<input id=\"btnsearch\" class=\"button\" type=\"button\" onClick=\"save();\" value=\"确定\" name=\"btnsave\"/>&nbsp;&nbsp;");
+                           document.write("<input id=\"btnCancle\" class=\"button\" type=\"button\" onClick=\"cancle();\" value=\"取消\" name=\"btncancle\"/>&nbsp;&nbsp;");
+                           document.write("<br /><br />");
+                           document.write("</td>");
+                           document.write("</tr>");
+                       }
+            </script>
+        </table>
+        <!-- test -->
+</form>
+</body>
+</html>
+

@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script  LANGUAGE="JavaScript">
+	//检索
+	function StartSearch()
+	{
+			form1.action="StudentCtrlL.html?query=1"
+			form1.target="_self";
+			form1.submit();
+	}
+	//新建
+	function newitem() 
+	{
+	    //window.open("StudentCtrlD.html?query=1&station=&view=new&address=", '', 'resizable=no,width=350,height=200,left=400px,top=350px');
+	    form1.action = "StudentCtrlD.html?query=1&view=add";
+		form1.target="_self";
+		form1.submit();
+	}
+	//编辑
+	function Edit(value) {
+	    //window.open(value, '', 'resizable=no,width=350,height=200,left=400px,top=350px');
+	     form1.action=value;
+		form1.target="_self";
+		form1.submit();
+	}
+	function ResultList() 
+	{
+	    window.open("ObjectResult.html", '', 'resizable=no,width=450,height=300,left=400px,top=350px');
+//	    form1.action = "ObjectResult.html";
+//	    form1.target = "_self";
+//	    form1.submit();
+	}
+	function Result(value) 
+	{
+	    window.open(value, '', 'resizable=no,width=500,height=300,left=400px,top=350px');
+	    //form1.action = value;
+	    //form1.target = "_self";
+	    //form1.submit();
+	}
+	function Detail(value) 
+	{
+	    //window.open(value, '', 'resizable=no,width=500,height=300,left=400px,top=350px');
+	    form1.action=value;
+	    form1.target="_self";
+	    form1.submit();
+	}
+	function init() {
+	    initStage();
+	    initcmbclassName();
+	    initteacherName();
+	    initcmbResultLevel();
+	}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="init();">
+<form id="form1" method="POST">
+  <input type="hidden" id="query" value="1">
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+    <tr>
+      <td><!--导航栏 开始-->
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="2%" height="24"><div align="center"><img 
+                                         src="../Images/neiye6_r8_c9.jpg" 
+                                         height="11" /></div></td>
+            <td width="98%"><font color="#0000FF">当前位置 -> 学生管理 -> 学生信息一览</font></td>
+          </tr>
+          <tr>
+            <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+          </tr>
+        </table>
+        <!--导航栏 结束--></td>
+    </tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+            <td width="10%">学生ID:</td>
+            <td width="20%"><input type="text" id="name" value="" 
+              size="30"/></td>
+              <td width="10%">学生姓名:</td>
+            <td width="20%"><input type="text" id="Text1" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td width="10%">参训状态:</td>
+            <td width="20%"><select id="cmbStage" name="cmbStage" class="boxselect"></td>
+              <td width="10%" >参加项目:</td>
+            <td width="50%"><input type="text" id="Text3" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td width="10%">班级:</td>
+            <td width="20%"><select id="className" name="className" class="boxselect"></td>
+              <td width="10%" >指导老师（PM）:</td>
+            <td width="50%"><select id="teacherName" name="teacherName" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td width="10%">评价等级:</td>
+            <td width="20%" colspan="3"><select id="cmbResultLevel" name="cmbResultLevel" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td colspan=5><input id="btnsearch" class="button" type="button" onClick="StartSearch();" value="检索" name="search"/>
+			<input id="btnsearch" class="button" type="button" onClick="newitem();" value="新增" name="btnnew"/>
+			<input id="Button1" class="button" type="button" value="导出Excel" name="btnnew"/></td>
+			
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>
+    <span id="stable">
+
+    <tr>
+      <td><!--Tab 开始-->
+        <table cellspacing=0 cellpadding=0 border=0>
+          <tr>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tabselectedleft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabselectedbg.png>&nbsp;
+            学生信息一览&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabselectedright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+            <!--<td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tableft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabbg.png>&nbsp;<a 
+              href="#">变电站信息</a>&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>-->
+          </tr>
+        </table>
+        <!--Tab 结束--></td>
+    </tr>
+
+    <tr>
+      <td><table class="tbl" cellspacing=1 cellpadding=0 width="100%" border=0  align="left">
+			<tr align="right">
+            <td colspan="9">
+                <input type="button" name="pagerFirst" class="btnPager" value="|<">
+                <input type="button" name="pagerPrevious" class="btnPager" value="<<">
+                
+                <input type="text" name="PageNo" id="PageNo1" size="2" />
+                <input type="button" name="pagerJump" class="btnPager" value="GO">
+                
+                <input type="button" name="pagerNext" class="btnPager" value=">>">
+                <input type="button" name="pagerLast" class="btnPager" value=">|">
+            </td>
+            </tr>
+          <tr>
+            <td><table class="tbl" id="details" cellspacing=1 cellpadding=0 width="100%" border=0  >
+                <tr>
+                  <th width="10%"><div align="center">ID</div></th>
+                  <!--<th width="40%"><div align="center">地址</div></th>-->
+                  <th width="8%"><div align="center">姓名</div></th>
+                  <th width="4%"><div align="center">性别</div></th>
+                  <th width="15%"><div align="center">班级</div></th>
+                  <th width="10%"><div align="center">专业方向</div></th>
+                  <th width="15%"><div align="center">项目名</div></th>
+                  <th width="8%"><div align="center">组别</div></th>
+                  <th width="8%"><div align="center">实训PM</div></th>
+                  <th width="10%"><div align="center">项目考评</div></th>
+                  <th width="10%"><div align="center">操作</div></th>
+                  <th width="10%"><div align="center">年度考评</div></th>
+                </tr>
+				<script type="text/javascript">
+				    var SSID = new Array('S00000000001', 'S00000000002', 'S00000000003', 'S00000000004');
+				    var name = new Array('上官玉', '周星星', '白晶晶', '雷人王');
+				    var sex = new Array('gif1290.jpg', 'gif1290.jpg', 'gif1302.jpg', 'gif1290.jpg');
+				    var dept = new Array('200903', '200903', '200904', '200904');
+				    var fangx = new Array('java', '嵌入式', 'CSharp', 'java');
+				    var TrainStatus = new Array('参加', '没参加', '没参加', '参加');
+				    var projectName = new Array('物流中心管理系统<br>日语实训', '生产管理系统<br>日语实训', '环境监测支援系统<br>日语实训', '保险贩卖支援系统<br>日语实训');
+				    var groupName = new Array('第一组<br>第四组', '第二组<br>第三组', '第一组<br>第一组', '第三组<br>第二组');
+				    var PM = new Array('张天众<br>高达', '李逵<br>巍巍', '李逵<br>高达', '巍巍<br>张天众');
+				    var jindu = new Array('20%', '92%', '2%', '30%');
+				    var job = new Array('PG', 'SE', 'SE', 'PL');
+				    for (var i = 0; i < SSID.length; i++)
+				  {
+				        document.write(" <tr>");
+				        document.write("<td width=\"10%\"><div align=\"center\"><a href='#' onClick='Detail(\"StudentCtrlD.html?query=1&view=view&SSID=" + SSID[i] + "&name=" + name[i] + "&sex=" + sex[i] + "&dept=" + dept[i] + "&TrainStatus=" + TrainStatus[i] + "&projectName=" + projectName[i] + "&jindu=" + jindu[i] + "&job=" + job[i] + "\")'>" + SSID[i] + "</a></div></td>");
+				        document.write("<td width=\"8%\"><div align=\"center\"><a href='#' onClick='Detail(\"StudentCtrlDnew.html?query=1&view=view&SSID=" + SSID[i] + "&name=" + name[i] + "&sex=" + sex[i] + "&dept=" + dept[i] + "&TrainStatus=" + TrainStatus[i] + "&projectName=" + projectName[i] + "&jindu=" + jindu[i] + "&job=" + job[i] + "\")'>" + name[i] + "</a></div></td>");
+				        document.write("<td width=\"4%\"><div align=\"center\">" + "<img src='../img/" + sex[i] + "'>" + "</a></div></td>");
+				        document.write("<td width=\"15%\"><div align=\"center\">" + dept[i] + "</a></div></td>");
+				        document.write("<td width=\"10%\"><div align=\"center\">" + fangx[i] + "</a></div></td>");
+						//document.write("<td width=\"40%\"><div align=\"center\">"+Station[i]+"</div></td>");
+						document.write("<td width=\"15%\"><div align=\"center\">" + projectName[i] + "</div></td>");
+						document.write("<td width=\"8%\"><div align=\"center\">" + groupName[i] + "</div></td>");
+						document.write("<td width=\"8%\"><div align=\"center\">" + PM[i] + "</div></td>");
+						document.write("<td width=\"10%\"><div align=\"center\"><a href='#' onClick=\"ResultList();\" >评价一览</a></div></td>");
+						document.write("<td width=\"10%\"><div align=\"center\"><img onClick = 'Edit(\"StudentCtrlD.html?query=1&view=edit&SSID=" + SSID[i] + "&name=" + name[i] + "&sex=" + sex[i] + "&dept=" + dept[i] + "&TrainStatus=" + TrainStatus[i] + "&projectName=" + projectName[i] + "&jindu=" + jindu[i] + "&job=" + job[i] + "\")' src='../img/xedit.gif' alt='编辑'>"
+									   + "&nbsp;&nbsp;<img onClick = window.open(\"file:\",\"你没有名字\") src='../img/folderopen.gif' alt='成果物一览'>"
+									   + "&nbsp;&nbsp;<img onClick = 'Delete(\"" + name[i] + "\")' src='../img/delete.gif' alt='删除'></div></td>");
+						document.write("<td width=\"10%\"><div align=\"center\"><img onClick = 'Result(\"YearResult.html?query=1&view=add&SSID=" + SSID[i] + "&name=" + name[i] + "\")' src='../img/pm_pr.gif' alt='新增'>"
+									   + "&nbsp;&nbsp;<img onClick = 'Result(\"YearResult.html?query=1&view=edit&SSID=" + SSID[i] + "&name=" + name[i] + "\")' src='../img/xedit.gif' alt='编辑'>"
+									   + "&nbsp;&nbsp;<img onClick = 'Result(\"YearResult.html?query=1&view=view&SSID=" + SSID[i] + "&name=" + name[i] + "\")' src='../img/look.gif' alt='查看'>" + "</div></td>");
+						document.write("</tr>");
+				 }
+				  </script>
+			<tr align="right">
+            <td colspan="11">
+                <input type="button" name="pagerFirst" class="btnPager" value="|<">
+                <input type="button" name="pagerPrevious" class="btnPager" value="<<">
+                
+                <input type="text" name="PageNo" id="Text2" size="2" />
+                <input type="button" name="pagerJump" class="btnPager" value="GO">
+                
+                <input type="button" name="pagerNext" class="btnPager" value=">>">
+                <input type="button" name="pagerLast" class="btnPager" value=">|">
+            </td>
+            </tr>
+				</table></td>
+          </tr>
+          </span>
+        </table>
+        <!-- test --></td>
+    </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+</form>
+</body>
+</html>
+

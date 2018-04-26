@@ -1,0 +1,197 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script  LANGUAGE="JavaScript">
+	//检索
+	function StartSearch()
+	{
+	    form1.action = "SampleCtrlL.html?query=1"
+			form1.target="_self";
+			form1.submit();
+	}
+	//初期化
+	function init() 
+	{
+	    initSampleClass1();
+	    initLanguage1();
+	    initFrame1();
+	    initDB1();
+	    initcmbCost();
+		if(getquerystring('query') != null)
+		{
+			document.getElementById("stable").style.visibility="visible";
+		}else{
+			document.getElementById("stable").innerHTML="";
+
+		}
+}
+function Detail(value) 
+{
+    form1.action = value;
+    form1.target="_self";
+    form1.submit();
+
+}
+	//新建
+	function newitem() 
+	{
+	    var value = "SampleCtrlD.html?query=1&station=&view=add";
+	    form1.action = value;
+		form1.target="_self";
+		form1.submit();
+	}
+	//编辑
+	function Edit(value) 
+	{
+	    //window.open(value, '', 'resizable=no,width=500,height=520,left=400px,top=250px');
+	    form1.action=value;
+		form1.target="_self";
+		form1.submit();
+	}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="init();">
+<form id="form1" method="POST">
+  <input type="hidden" id="query" value="1">
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+    <tr>
+      <td><!--导航栏 开始-->
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="2%" height="24"><div align="center"><img 
+                                         src="../Images/neiye6_r8_c9.jpg" 
+                                         height="11" /></div></td>
+            <td width="98%"><font color="#0000FF">当前位置 -> 案例库管理 -> 案例库一览</font></td>
+          </tr>
+          <tr>
+            <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+          </tr>
+        </table>
+        <!--导航栏 结束--></td>
+    </tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+            <td width="10%">案例ID:</td>
+            <td width="20%"><input type="text" id="name" value="" size="30"/></td>
+            <td width="10%">规模:</td>
+            <td width="20%"><select id="cmbCost" name="cmbCost" class="boxselect"></select></td>
+            <td width="10%">框架:</td>
+            <td width="20%"><select id="cmbFrame1" name="cmbFrame1" class="boxselect"></select></td>
+          </tr>
+          <tr>
+            <td width="10%">项目分类:</td>
+            <td width="20%"><select id="cmbSampleClass1" name="cmbSampleClass1" class="boxselect"></td>
+            <td width="10%">使用语言:</td>
+            <td width="20%"><select id="cmbLanguage1" name="cmbLanguage1" class="boxselect"></td>
+            <td width="10%">数据库:</td>
+            <td width="20%"><select id="cmbDB1" name="cmbDB1" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td colspan=6><input id="btnsearch" class="button" type="button" onclick="StartSearch();" value="检索" name="search"/>
+			<input id="btnsearch" class="button" type="button" onClick="newitem();" value="新增" name="btnnew"/></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>
+    <span id="stable">
+
+    <tr>
+      <td><!--Tab 开始-->
+        <table cellspacing=0 cellpadding=0 border=0>
+          <tr>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tabselectedleft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabselectedbg.png>&nbsp;案例库一览&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabselectedright.png" width=3 border=0></td>
+          </tr>
+        </table>
+        <!--Tab 结束--></td>
+    </tr>
+
+    <tr>
+      <td><table class="tbl" cellspacing=1 cellpadding=0 width="100%" border=0  align="left">
+			<tr align="right">
+            <td colspan="9">
+                <input type="button" name="pagerFirst" class="btnPager" value="|<">
+                <input type="button" name="pagerPrevious" class="btnPager" value="<<">
+                
+                <input type="text" name="PageNo" id="PageNo1" size="2" />
+                <input type="button" name="pagerJump" class="btnPager" value="GO">
+                
+                <input type="button" name="pagerNext" class="btnPager" value=">>">
+                <input type="button" name="pagerLast" class="btnPager" value=">|">
+            </td>
+            </tr>
+          <tr>
+            <td><table class="tbl" id="details" cellspacing=1 cellpadding=0 width="100%" border=0  >
+                <tr>
+                  <th width="10%"><div align="center">案例ID</div></th>
+                  <!--<th width="40%"><div align="center">地址</div></th>-->
+                  <th width="15%"><div align="center">案例名称</div></th>
+                  <th width="5%"><div align="center">项目分类</div></th>
+                  <th width="12%"><div align="center">使用语言</div></th>
+                  <th width="18%"><div align="center">框架</div></th>
+                  <th width="12%"><div align="center">规模</div></th>
+                  <th width="8%"><div align="center">数据库</div></th>
+                  <th width="10%"><div align="center">创建日期</div></th>
+                  <th width="5%"><div align="center">操作</div></th>
+                </tr>
+				<script type="text/javascript">
+				    var ProjectID = new Array('Spl-0001', '00201', '00003', '00004');
+				    var name = new Array('邮局系统', '门禁系统', '生产管理系统', '社内系统');
+				    var ProjectClass = new Array('通信', '管理', '管理', '管理');
+				    var Language = new Array('CSharp', 'Java', 'VB.NET', 'Java');
+				    var Fream = new Array('MVC', 'SSH', 'SDE.NET', 'JSF');
+				    var Model = new Array('10人月', '20人月', '240人月', '60人月');
+				    var DB = new Array('Oracle10g', 'Mysql', 'Oracle9i', 'Mysql');
+				    var BuileDate = new Array('2009-01-01', '2009-05-01', '2009-06-12', '2009-07-02');
+				    for (var i = 0; i < ProjectID.length; i++) {
+				        document.write(" <tr>");
+				        document.write("<td width=\"10%\"><div align=\"center\">" + ProjectID[i] + "</div></td>");
+				        document.write("<td width=\"15%\"><div align=\"center\">" + name[i] + "</a></div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\">" + ProjectClass[i] + "</a></div></td>");
+				        document.write("<td width=\"12%\"><div align=\"center\">" + Language[i] + "</a></div></td>");
+				        document.write("<td width=\"18%\"><div align=\"center\">" + Fream[i] + "</a></div></td>");
+				        //document.write("<td width=\"40%\"><div align=\"center\">"+Station[i]+"</div></td>");
+				        document.write("<td width=\"12%\"><div align=\"center\">" + Model[i] + "</div></td>");
+				        document.write("<td width=\"8%\"><div align=\"center\">" + DB[i] + "</div></td>");
+				        document.write("<td width=\"10%\"><div align=\"center\">" + BuileDate[i] + "</div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\"><img onClick='Detail(\"SampleCtrlD.html?query=1&view=edit&ProjectID=" + ProjectID[i] + "&name=" + name[i] + "&ProjectClass=" + ProjectClass[i] + "&Language=" + Language[i] + "&Fream=" + Fream[i] + "&Model=" + Model[i] + "&DB=" + DB[i] + "&view=edit" + "\")' src='../img/xedit.gif' alt='编辑'>"
+									   + "&nbsp;&nbsp;<img onClick = 'Delete(\"" + name[i] + "\")' src='../img/delete.gif' alt='删除'></div></td>");
+				        document.write("</tr>");
+				    }
+				  </script>
+			<tr align="right">
+            <td colspan="9">
+                <input type="button" name="pagerFirst" class="btnPager" value="|<">
+                <input type="button" name="pagerPrevious" class="btnPager" value="<<">
+                
+                <input type="text" name="PageNo" id="Text2" size="2" />
+                <input type="button" name="pagerJump" class="btnPager" value="GO">
+                
+                <input type="button" name="pagerNext" class="btnPager" value=">>">
+                <input type="button" name="pagerLast" class="btnPager" value=">|">
+            </td>
+            </tr>
+				</table></td>
+          </tr>
+          </span>
+        </table>
+        <!-- test --></td>
+    </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+</form>
+</body>
+</html>

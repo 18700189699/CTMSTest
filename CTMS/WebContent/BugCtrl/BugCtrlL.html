@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="../Js/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="../Js/ui.datepicker.js"></script>
+<script type="text/javascript" src="../Js/ui.core.js"></script>
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script  LANGUAGE="JavaScript">
+	//检索
+	function StartSearch()
+	{
+			form1.action="BugCtrlL.html"
+			form1.target="_self";
+			form1.submit();
+	}
+	//新建
+	function newitem(value) 
+	{
+	    //window.open(value, '', 'resizable=no,width=650,height=300,left=400px,top=350px');
+	    form1.action = value;
+		form1.target="_self";
+		form1.submit();
+	}
+	//编辑
+	function Edit(value) {
+	    window.open(value, '', 'resizable=no,width=500,height=450,left=400px,top=350px');
+//	     form1.action=value;
+//		form1.target="_self";
+//		form1.submit();
+	}
+	function ResultList() 
+	{
+	    window.open("ObjectResult.html", '', 'resizable=no,width=450,height=300,left=400px,top=350px');
+	}
+	function Result(value) 
+	{
+	    window.open(value, '', 'resizable=no,width=500,height=300,left=400px,top=350px');
+	}
+	function Detail(value) 
+	{
+	    //window.open(value, '', 'resizable=no,width=650,height=300,left=400px,top=350px');
+	    form1.action = value;
+	    form1.target = "_self";
+	    form1.submit();
+	}
+	function Finish(value) 
+	{
+	    form1.action = value;
+	    form1.target = "_self";
+	    form1.submit();
+	}
+	function PeogressCtrl(value) 
+	{
+	    form1.action=value;
+		form1.target="_self";
+		form1.submit();
+}
+function init() {
+    initObjectStage();
+    initBugStatus();
+    initStage();
+    initBugType();
+    initBugCreater();
+    initBugCreater1();
+    initcmbQuestionType();
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="init();">
+<form id="form1" method="POST">
+  <input type="hidden" id="query" value="1">
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+    <tr>
+      <td><!--导航栏 开始-->
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="2%" height="24"><div align="center"><img 
+                                         src="../Images/neiye6_r8_c9.jpg" 
+                                         height="11" /></div></td>
+            <td width="98%"><font color="#0000FF">当前位置 -> 问题管理 -> 问题信息一览</font></td>
+          </tr>
+          <tr>
+            <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+          </tr>
+        </table>
+        <!--导航栏 结束--></td>
+    </tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+              <td width="10%">项目名称:</td>
+            <td width="20%"><input type="text" id="Text1" value="" 
+              size="30"/></td>
+              <td width="10%" >项目状态:</td>
+            <td width="50%"><select id="Select1" name="cmbObjectStage" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td width="10%">NO:</td>
+            <td width="20%"><input type="text" id="Text2" value="" 
+              size="30"/></td>
+              <td width="10%" >问题状态:</td>
+            <td width="50%"><select id="cmbBugStatus" name="cmbBugStatus" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td width="10%">阶段:</td>
+            <td width="20%"><select id="cmbStage" name="cmbStage" class="boxselect"></td>
+              <td width="10%" >错误类型:</td>
+            <td width="50%"><select id="cmbBugType" name="cmbBugType" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td width="10%">创建者:</td>
+            <td width="20%"><select id="cmbBugCreater" name="cmbBugCreater" class="boxselect"></td>
+              <td width="10%" >解决者:</td>
+            <td width="50%">
+            <select id="cmbBugCreater2" name="cmbBugCreater1" class="boxselect">
+            </td>
+          </tr>
+          <tr>
+            <td width="10%">问题分类:</td>
+            <td width="20%" colspan=3><select id="cmbQuestionType" name="cmbQuestionType" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td colspan=5><input id="btnsearch" class="button" type="button" onclick="StartSearch()" value="检索" name="search"/>
+			<input id="btnsearch" class="button" type="button" onClick="newitem('BugCtrlD.html?query=1&view=add');" value="新增" name="btnnew"/>
+			<input id="Button1" class="button" type="button" value="导出Excel" name="bntExcel"/></td>
+			
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>
+    <span id="stable">
+
+    <tr>
+      <td><!--Tab 开始-->
+        <table cellspacing=0 cellpadding=0 border=0>
+          <tr>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tabselectedleft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabselectedbg.png>&nbsp;
+            问题信息一览&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabselectedright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+            <!--<td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tableft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabbg.png>&nbsp;<a 
+              href="#">变电站信息</a>&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>-->
+          </tr>
+        </table>
+        <!--Tab 结束--></td>
+    </tr>
+
+    <tr>
+      <td><table class="tbl" cellspacing=1 cellpadding=0 width="100%" border=0  align="left">
+			<tr align="right">
+            <td colspan="9">
+                <input type="button" name="pagerFirst" class="btnPager" value="|<">
+                <input type="button" name="pagerPrevious" class="btnPager" value="<<">
+                
+                <input type="text" name="PageNo" id="PageNo1" size="2" />
+                <input type="button" name="pagerJump" class="btnPager" value="GO">
+                
+                <input type="button" name="pagerNext" class="btnPager" value=">>">
+                <input type="button" name="pagerLast" class="btnPager" value=">|">
+            </td>
+            </tr>
+          <tr>
+            <td><table class="tbl" id="details" cellspacing=1 cellpadding=0 width="100%" border=0  >
+                <tr>
+                  <th width="5%"><div align="center">NO</div></th>
+                  <!--<th width="40%"><div align="center">地址</div></th>-->
+                  <th width="56%"><div align="center">详细内容</div></th>
+                  <th width="5%"><div align="center">创建人</div></th>
+                  <th width="5%"><div align="center">解决人</div></th>
+                  <th width="5%"><div align="center">错误类型</div></th>
+                  <th width="8%"><div align="center">创建日期</div></th>
+                  <th width="8%"><div align="center">解决日期</div></th>
+                  <th width="8%"><div align="center">解决状态</div></th>
+                </tr>
+				<script type="text/javascript">
+				    var BugID = new Array('0001', '0002', '0003', '0004');
+				    var BugContent = new Array('画面Layout不符合，要进行修改，以符合现在要求。', '更新数据不能实现，要进行修改，以符合现在要求。', '和业务需求不相符，要进行修改，以符合现在要求。', '画面Layout不符合，要进行修改，以符合现在要求。');
+				    var Creater = new Array('上官玉', '周星星', '白晶晶', '雷人王');
+				    var Fixer = new Array('周星星', '雷人王', '上官玉', '周星星');
+				    var Type = new Array('式样有误', '编码错误', '逻辑错误', '非错误');
+				    var CreatDate = new Array('2009-01-12', '2009-01-12', '2009-01-12', '2009-01-12');
+				    var FinishDate = new Array('-', '2009-01-12', '-', '2009-01-12');
+				    var BugStatus = new Array('打开', '已关闭', '解决待确认', '已关闭');
+				    for (var i = 0; i < BugID.length; i++)
+				    {
+				        document.write(" <tr>");
+				        document.write("<td width=\"5%\"><div align=\"center\"><a href='#' onClick='Detail(\"BugCtrlD.html?query=1&view=view&BugID=" + BugID[i] + "&BugContent=" + BugContent[i] + "&Creater=" + Creater[i] + "&Fixer=" + Fixer[i] + "&Type=" + Type[i] + "&CreatDate=" + CreatDate[i] + "&FinishDate=" + FinishDate[i] + "&BugStatus=" + BugStatus[i] + "\")' value=\"" + BugID[i] + "\"/>" + BugID[i] + "</a></div></td>");
+				        document.write("<td width=\"56%\" align=\"left\"><a href='#' onClick='Detail(\"BugCtrlD.html?query=1&view=view&BugID=" + BugID[i] + "&BugContent=" + BugContent[i] + "&Creater=" + Creater[i] + "&Fixer=" + Fixer[i] + "&Type=" + Type[i] + "&CreatDate=" + CreatDate[i] + "&FinishDate=" + FinishDate[i] + "&BugStatus=" + BugStatus[i] + "\")' value=\"" + BugID[i] + "\"/>" + BugContent[i] + "</a></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\"><a href='#' onClick='Detail(\"BugCtrlD.html?query=1&view=view&BugID=" + BugID[i] + "&BugContent=" + BugContent[i] + "&Creater=" + Creater[i] + "&Fixer=" + Fixer[i] + "&Type=" + Type[i] + "&CreatDate=" + CreatDate[i] + "&FinishDate=" + FinishDate[i] + "&BugStatus=" + BugStatus[i] + "\")' value=\"" + BugID[i] + "\"/>" + Creater[i] + "</a></div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\"><a href='#' onClick='Detail(\"BugCtrlD.html?query=1&view=view&BugID=" + BugID[i] + "&BugContent=" + BugContent[i] + "&Creater=" + Creater[i] + "&Fixer=" + Fixer[i] + "&Type=" + Type[i] + "&CreatDate=" + CreatDate[i] + "&FinishDate=" + FinishDate[i] + "&BugStatus=" + BugStatus[i] + "\")' value=\"" + BugID[i] + "\"/>" + Fixer[i] + "</a></div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\"><a href='#' onClick='Detail(\"BugCtrlD.html?query=1&view=view&BugID=" + BugID[i] + "&BugContent=" + BugContent[i] + "&Creater=" + Creater[i] + "&Fixer=" + Fixer[i] + "&Type=" + Type[i] + "&CreatDate=" + CreatDate[i] + "&FinishDate=" + FinishDate[i] + "&BugStatus=" + BugStatus[i] + "\")' value=\"" + BugID[i] + "\"/>" + Type[i] + "</a></div></td>");
+						//document.write("<td width=\"40%\"><div align=\"center\">"+Station[i]+"</div></td>");
+				        document.write("<td width=\"8%\"><div align=\"center\"><a href='#' onClick='Detail(\"BugCtrlD.html?query=1&view=view&BugID=" + BugID[i] + "&BugContent=" + BugContent[i] + "&Creater=" + Creater[i] + "&Fixer=" + Fixer[i] + "&Type=" + Type[i] + "&CreatDate=" + CreatDate[i] + "&FinishDate=" + FinishDate[i] + "&BugStatus=" + BugStatus[i] + "\")' value=\"" + BugID[i] + "\"/>" + CreatDate[i] + "</a></div></td>");
+				        document.write("<td width=\"8%\"><div align=\"center\"><a href='#' onClick='Detail(\"BugCtrlD.html?query=1&view=view&BugID=" + BugID[i] + "&BugContent=" + BugContent[i] + "&Creater=" + Creater[i] + "&Fixer=" + Fixer[i] + "&Type=" + Type[i] + "&CreatDate=" + CreatDate[i] + "&FinishDate=" + FinishDate[i] + "&BugStatus=" + BugStatus[i] + "\")' value=\"" + BugID[i] + "\"/>" + FinishDate[i] + "</a></div></td>");
+				        document.write("<td width=\"8%\"><div align=\"center\"><a href='#' onClick='Detail(\"BugCtrlD.html?query=1&view=view&BugID=" + BugID[i] + "&BugContent=" + BugContent[i] + "&Creater=" + Creater[i] + "&Fixer=" + Fixer[i] + "&Type=" + Type[i] + "&CreatDate=" + CreatDate[i] + "&FinishDate=" + FinishDate[i] + "&BugStatus=" + BugStatus[i] + "\")' value=\"" + BugID[i] + "\"/>" + BugStatus[i] + "</a></div></td>");
+				   }
+				  </script>
+				<tr align="right">
+            <td colspan="9">
+                <input type="button" name="pagerFirst" class="btnPager" value="|<">
+                <input type="button" name="pagerPrevious" class="btnPager" value="<<">
+                
+                <input type="text" name="PageNo" id="Text3" size="2" />
+                <input type="button" name="pagerJump" class="btnPager" value="GO">
+                
+                <input type="button" name="pagerNext" class="btnPager" value=">>">
+                <input type="button" name="pagerLast" class="btnPager" value=">|">
+            </td>
+            </tr>
+				</table></td>
+          </tr>
+          </span>
+        </table>
+</form>
+</body>
+</html>
+

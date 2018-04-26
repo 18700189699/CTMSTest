@@ -1,0 +1,174 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script  LANGUAGE="JavaScript">
+	//检索
+	function StartSearch()
+	{
+			form1.action="StudentCtrlL.html?query=1"
+			form1.target="_self";
+			form1.submit();
+	}
+	//新建
+	function newitem() 
+	{
+	    //window.open("StudentCtrlD.html?query=1&station=&view=new&address=", '', 'resizable=no,width=350,height=200,left=400px,top=350px');
+	    form1.action = "StudentCtrlD.html?query=1&station=&view=new&address=";
+		form1.target="_self";
+		form1.submit();
+	}
+	//编辑
+	function Edit(value) {
+	    //window.open(value, '', 'resizable=no,width=350,height=200,left=400px,top=350px');
+	     form1.action=value;
+		form1.target="_self";
+		form1.submit();
+	}
+	function ResultList() 
+	{
+	    window.open("ObjectResult.html", '', 'resizable=no,width=450,height=300,left=400px,top=350px');
+//	    form1.action = "ObjectResult.html";
+//	    form1.target = "_self";
+//	    form1.submit();
+	}
+	function Result(value) 
+	{
+	    window.open(value, '', 'resizable=no,width=500,height=300,left=400px,top=350px');
+	    //form1.action = value;
+	    //form1.target = "_self";
+	    //form1.submit();
+	}
+	function Detail(value) 
+	{
+	    //window.open(value, '', 'resizable=no,width=500,height=300,left=400px,top=350px');
+	    form1.action=value;
+	    form1.target="_self";
+	    form1.submit();
+	}
+	function Group() {
+	    var checkboxS = document.getElementsByName("checkboxDetail");
+	    var GroupName = document.getElementsByName("GroupName")[0].value;
+	    if (GroupName == "") {
+	        GroupName = " ";
+	    }
+	    for (var i = 0; i < checkboxS.length; i++) {
+	        if (checkboxS[i].checked && checkboxS[i].disabled == false) {
+	            checkboxS[i].disabled = true;
+	            IntextBtn(i + 1, GroupName);
+	            //alert(i);
+	        }
+	    }
+	}
+	function IntextBtn(row, GroupName) {
+	    var tableS = document.getElementById("details");
+	    var cell = tableS.rows[row].children[5];
+
+	    cell.innerHTML = "<td align=\"left\">" + GroupName + "<input id=\"Btn\" style=\"align=right; \" type=\"button\" value=\"取消\" onclick=\"Ucheck(" + (row - 1) + ")\"/></td>";
+	    cell.innerHTML += ""
+	}
+	function Ucheck(row) {
+
+	    var checkboxS = document.getElementsByName("checkboxDetail");
+	    for (var i = 0; i < checkboxS.length; i++) {
+	        if (i == row) {
+	            checkboxS[i].checked = false;
+	            checkboxS[i].disabled = false;
+	            //alert(i);
+	        }
+	    }
+	    var tableS = document.getElementById("details");
+	    var cell = tableS.rows[row + 1].children[5];
+	    cell.innerHTML = "<td width=\"10%\"></td>";
+	}
+	function init() {
+	    initcmbclassName();
+	}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="init();">
+<form id="form1" method="POST">
+  <input type="hidden" id="query" value="1">
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+  <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+            <td width="10%">学生ID:</td>
+            <td width="90%"><input type="text" id="name" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td width="10%">学生姓名：</td>
+            <td width="90%"><input type="text" id="Text1" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td width="10%">班级：</td>
+            <td width="90%"><select id="Select3" name="className" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td colspan=2><input id="btnsearch" class="button" type="button" onClick="" value="检索" name="search"/>
+			</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>
+
+    <tr>
+      <td><table class="tbl" cellspacing=1 cellpadding=0 width="100%" border=0  align="left">
+			
+          <tr>
+            <td><table class="tbl" id="details" cellspacing=1 cellpadding=0 width="100%" border=0  >
+                <tr>
+                  <th width="2%"><div align="center"></div></th>
+                  <th width="10%"><div align="center">ID</div></th>
+                  <th width="10%"><div align="center">姓名</div></th>
+                  <th width="5%"><div align="center">性别</div></th>
+                  <th width="20%"><div align="center">班级</div></th>
+                  <th width="10%"><div align="center">组别</div></th>
+                </tr>
+				<script type="text/javascript">
+				    var SSID = new Array('00001', '00201', '00003', '00004');
+				    var name = new Array('上官玉', '周星星', '白晶晶', '雷人王');
+				    var sex = new Array('男', '男', '女', '男');
+				    var dept = new Array('200903', '200903', '200904', '200904');
+				    var TrainStatus = new Array('参加', '没参加', '没参加', '参加');
+				    for (var i = 0; i < SSID.length; i++)
+				  {
+				        document.write(" <tr>");
+				        document.write("<td width=\"2%\"><div align=\"center\"><input id=\"checkboxDetail\" name=\"checkboxDetail\" type=\"checkbox\"></a></div></td>");
+				        document.write("<td width=\"10%\"><div align=\"center\">" + SSID[i] + "</div></td>");
+				        document.write("<td width=\"10%\"><div align=\"center\">" + name[i] + "</a></div></td>");
+						document.write("<td width=\"5%\"><div align=\"center\">" + sex[i] + "</a></div></td>");
+						document.write("<td width=\"20%\"><div align=\"center\">" + dept[i] + "</a></div></td>");
+						document.write("<td width=\"10%\"></td>");
+						document.write("</tr>");
+				 }
+				  </script>
+				
+				</table></td>
+          </tr>
+          </span>
+        </table>
+        </td>
+    </tr>
+    <tr>
+    <td>
+    <input id="Button1" class="button" type="button" value="确定" name="search" onclick="$.StudentHideen()"/>
+    <input id="Button2" class="button" type="button" value="取消" name="search" onclick="$.StudentHideen()"/>
+    <input type="text" name="GroupName" value="" />
+    <input id="Button3" class="button" type="button" value="分组" name="search" onclick="Group();"/>
+    </td>
+    </tr>
+  </table>
+  
+</form>
+</body>
+</html>
+

@@ -1,0 +1,272 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="../Js/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="../Js/ui.datepicker.js"></script>
+<script type="text/javascript" src="../Js/ui.core.js"></script>
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script src="../Js/view/ChooseSample.js" type="text/javascript"></script>
+<script  LANGUAGE="JavaScript">
+    $(function() {
+    $("#DateFrom").datepicker({ dateFormat: 'yy/mm/dd', showOn: 'button', buttonImage: '../images/calendar.gif', buttonImageOnly: true });
+    $("#DateTo").datepicker({ dateFormat: 'yy/mm/dd', showOn: 'button', buttonImage: '../images/calendar.gif', buttonImageOnly: true });
+    });
+	//检索
+	function StartSearch()
+	{
+	    form1.action = "ProjectCtrlL.html?query=1"
+	    form1.target = "_self";
+	    form1.submit();
+	}
+	//新建
+	function newitem() 
+	{
+	    //window.open("ProjectCtrlD.html?query=1&view=add", '', 'resizable=no,width=500,height=450,left=400px,top=350px');
+	    form1.action = "ProjectCtrlD.html?query=1&view=add";
+		form1.target="_self";
+		form1.submit();
+	}
+	//编辑
+	function Edit(value) {
+	    //window.open(value, '', 'resizable=no,width=500,height=450,left=400px,top=350px');
+	    form1.action=value;
+		form1.target="_self";
+		form1.submit();
+	}
+	function ResultList() 
+	{
+	    window.open("ObjectResult.html", '', 'resizable=no,width=450,height=300,left=400px,top=350px');
+	}
+	function Result(value) 
+	{
+	    window.open(value, '', 'resizable=no,width=500,height=300,left=400px,top=350px');
+	}
+	function Detail(value) 
+	{
+	    //window.open(value, '', 'resizable=no,width=500,height=400,left=400px,top=350px');
+	    form1.action = value;
+	    form1.target = "_self";
+	    form1.submit();
+	}
+	function Finish(value) {
+	    form1.action = value;
+	    form1.target = "_self";
+	    form1.submit();
+	}
+	function PeogressCtrl(value) {
+	    var reg = new RegExp("(^|&)" + "No" + "=([^&]*)(&|$)");
+	    var r = value.match(reg);
+	    if (r[2] % 2 == 0) {
+	        form1.action = value;
+	    }
+	    else {
+	        form1.action = "ProgressCtrlS.html";
+	    }
+		form1.target="_self";
+		form1.submit();
+}
+function init() {
+    initSampleClass();
+    initLanguage();
+    initFrame();
+    initDB();
+    initteacherName();
+    initcmbProjectStatus();
+    initcmbCost();
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="init();">
+<form id="form1" method="POST">
+  <!--案例选择-->
+<div id="SampleList" style="display: none">
+<iframe id="frame" name="frame" height="100%" width="100%" frameborder="0" src="SampleL.html" > </iframe>
+</div>
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+    <tr>
+      <td><!--导航栏 开始-->
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="2%" height="24"><div align="center"><img 
+                                         src="../Images/neiye6_r8_c9.jpg" 
+                                         height="11" /></div></td>
+            <td width="98%"><font color="#0000FF">当前位置 -> 实训项目管理 -> 项目信息一览</font></td>
+          </tr>
+          <tr>
+            <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+          </tr>
+        </table>
+        <!--导航栏 结束--></td>
+    </tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+            <td width="10%">项目ID:</td>
+            <td width="20%"><input type="text" id="SampleID" value="" 
+              size="30"/></td>
+              <td width="10%">项目名称:</td>
+            <td width="20%"><input type="text" id="SampleName" value="" 
+              size="30"/>
+              </td>
+          </tr>
+          <tr>
+            <td width="10%">规模:</td>
+            <td width="20%"><select id="cmbCost" name="cmbCost" class="boxselect"></select></td>
+              <td width="10%">项目分类:</td>
+            <td width="20%"><select id="cmbSampleClass" name="cmbSampleClass" class="boxselect"></select>
+              </td>
+          </tr>
+          <tr>
+            <td width="10%">语言:</td>
+            <td width="20%"><select id="cmbLanguage" name="cmbLanguage" class="boxselect"></select>
+            </td>
+              <td width="10%">框架:</td>
+            <td width="20%"><select id="cmbFrame" name="cmbFrame" class="boxselect"></select>
+              </td>
+          </tr>
+          <tr>
+            <td width="10%">数据库:</td>
+            <td width="20%"><select id="cmbDB" name="cmbDB" class="boxselect"></select>
+              </td>
+              <td width="10%" >使用时间:</td>
+            <td width="50%">
+            <input type="text" id="DateFrom" value="" size="30"/> ～
+            <input type="text" id="DateTo" value="" size="30"/>
+            </td>
+          </tr>
+          <tr>
+            <td width="10%">指导老师:</td>
+            <td width="20%"><select id="teacherName" name="teacherName" class="boxselect"></select>
+              </td>
+              <td width="10%" >状态:</td>
+            <td width="50%">
+            <select id="cmbProjectStatus" name="cmbProjectStatus" class="boxselect"></select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan=5><input id="btnsearch" class="button" type="button" onclick="StartSearch();" value="检索" name="search"/>
+			<input id="btnsearch" class="button" type="button" onClick="newitem();" value="新增" name="btnnew"/></td>
+			
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>
+    <span id="stable">
+
+    <tr>
+      <td><!--Tab 开始-->
+        <table cellspacing=0 cellpadding=0 border=0>
+          <tr>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tabselectedleft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabselectedbg.png>&nbsp;
+            项目信息一览&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabselectedright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+          </tr>
+        </table>
+        <!--Tab 结束--></td>
+    </tr>
+
+    <tr>
+      <td><table class="tbl" cellspacing=1 cellpadding=0 width="100%" border=0  align="left">
+			<tr align="right">
+            <td colspan="9">
+                <input type="button" name="pagerFirst" class="btnPager" value="|<">
+                <input type="button" name="pagerPrevious" class="btnPager" value="<<">
+                
+                <input type="text" name="PageNo" id="PageNo1" size="2" />
+                <input type="button" name="pagerJump" class="btnPager" value="GO">
+                
+                <input type="button" name="pagerNext" class="btnPager" value=">>">
+                <input type="button" name="pagerLast" class="btnPager" value=">|">
+            </td>
+            </tr>
+          <tr>
+            <td><table class="tbl" id="details" cellspacing=1 cellpadding=0 width="100%" border=0  >
+                <tr>
+                  <th width="10%"><div align="center">项目ID</div></th>
+                  <!--<th width="40%"><div align="center">地址</div></th>-->
+                  <th width="15%"><div align="center">项目名称</div></th>
+                  <th width="5%"><div align="center">项目分类</div></th>
+                  <th width="12%"><div align="center">使用语言</div></th>
+                  <th width="8%"><div align="center">框架</div></th>
+                  <th width="12%"><div align="center">规模</div></th>
+                  <th width="8%"><div align="center">数据库</div></th>
+                  <th width="5%"><div align="center">项目状态</div></th>
+                  <th width="5%"><div align="center">分组数</div></th>
+                  <th width="5%"><div align="center">参加人数</div></th>
+                  <th width="5%"><div align="center">指导老师（PM）</div></th>
+                  <th width="5%"><div align="center">操作</div></th>
+                  <th width="20%"><div align="center">管理</div></th>
+                </tr>
+				<script type="text/javascript">
+				    var ProjectID = new Array('Spl-0001', '00201', '00003', '00004');
+				    var name = new Array('物流中心管理系统', '生产管理系统', '环境监测支援系统', '保险贩卖支援系统');
+				    var ProjectClass = new Array('通信', '管理', '管理', '管理');
+				    var Language = new Array('CSharp', 'Java', 'VB.NET', 'Java');
+				    var Fream = new Array('MVC', 'SSH', 'SDE.NET', 'JSF');
+				    var Model = new Array('10人月', '20人月', '240人月', '60人月');
+				    var DB = new Array('Oracle10g', 'Mysql', 'Oracle9i', 'Mysql');
+				    var Status = new Array('已开始', '已结束', '已结束', '已结束');
+				    var Group = new Array('3组', '2组', '4组', '3组');
+				    var Member = new Array('30', '12', '37', '27');
+				    var teacher = new Array('张天众', '李逵', '高达', '巍巍');
+				    for (var i = 0; i < ProjectID.length; i++)
+				    {
+				        document.write(" <tr>");
+				        document.write("<td width=\"10%\"><div align=\"center\"><a href='#' onClick='Detail(\"ProjectCtrlDInfo.html?query=1&view=view&ProjectID=" + ProjectID[i] + "&name=" + name[i] + "&ProjectClass=" + ProjectClass[i] + "&Language=" + Language[i] + "&Fream=" + Fream[i] + "&Model=" + Model[i] + "&DB=" + DB[i] + "&Status=" + Status[i] + "\")'>" + ProjectID[i] + "</a></div></td>");
+				        document.write("<td width=\"15%\"><div align=\"center\">" + name[i] + "</a></div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\">" + ProjectClass[i] + "</a></div></td>");
+				        document.write("<td width=\"12%\"><div align=\"center\">" + Language[i] + "</a></div></td>");
+				        document.write("<td width=\"8%\"><div align=\"center\">" + Fream[i] + "</a></div></td>");
+						//document.write("<td width=\"40%\"><div align=\"center\">"+Station[i]+"</div></td>");
+				        document.write("<td width=\"12%\"><div align=\"center\">" + Model[i] + "</div></td>");
+				        document.write("<td width=\"8%\"><div align=\"center\">" + DB[i] + "</div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\">" + Status[i] + "</div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\">" + Group[i] + "</div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\">" + Member[i] + "</div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\">" + teacher[i] + "</div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\"><img onClick = 'Edit(\"ProjectCtrlD.html?query=1&view=edit&ProjectID=" + ProjectID[i] + "&name=" + name[i] + "&ProjectClass=" + ProjectClass[i] + "&Language=" + Language[i] + "&Fream=" + Fream[i] + "&Model=" + Model[i] + "&DB=" + DB[i] + "&Status=" + Status[i] + "\")' src='../img/xedit.gif' alt='编辑'>"
+				                       + "&nbsp;&nbsp;<img onClick = 'Delete(\"" + name[i] + "\")' src='../img/delete.gif' alt='删除'></div></td>");
+				        
+				        document.write("<td width=\"5%\"><div align=\"center\"><input id=\"btnDetail\" type=\"button\" class=\"buttonSmall\" onClick='PeogressCtrl(\"ProgressCtrl.html?query=1&No=" + i +"&view=view&ProjectID=" + ProjectID[i] + "&name=" + name[i] + "&ProjectClass=" + ProjectClass[i] + "&Language=" + Language[i] + "&Fream=" + Fream[i] + "&Model=" + Model[i] + "&DB=" + DB[i] + "&Status=" + Status[i] + "\")' value=\"进度管理\"/>"
+                        + "&nbsp;&nbsp;<input id=\"btnDetail\" type=\"button\" class=\"buttonSmall\" onClick='Finish(\"FinishCtrl.html?query=1&view=view&ProjectID=" + ProjectID[i] + "&name=" + name[i] + "&ProjectClass=" + ProjectClass[i] + "&Language=" + Language[i] + "&Fream=" + Fream[i] + "&Model=" + Model[i] + "&DB=" + DB[i] + "&Status=" + Status[i] + "\")' value=\"结项\"/>");
+						document.write("</tr>");
+				   }
+				  </script>
+			<tr align="right">
+            <td colspan="13">
+                <input type="button" name="pagerFirst" class="btnPager" value="|<">
+                <input type="button" name="pagerPrevious" class="btnPager" value="<<">
+                
+                <input type="text" name="PageNo" id="Text1" size="2" />
+                <input type="button" name="pagerJump" class="btnPager" value="GO">
+                
+                <input type="button" name="pagerNext" class="btnPager" value=">>">
+                <input type="button" name="pagerLast" class="btnPager" value=">|">
+            </td>
+            </tr>
+				</table></td>
+          </tr>
+          </span>
+        </table>
+        <!-- test --></td>
+    </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+</form>
+</body>
+</html>
+

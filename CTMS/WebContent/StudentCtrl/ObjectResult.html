@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script  LANGUAGE="JavaScript">
+	//检索
+	function StartSearch()
+	{
+			form1.action="StudentCtrlL.html?query=1"
+			form1.target="_self";
+			form1.submit();
+	}
+	//新建
+	function newitem() 
+	{
+	    form1.action = "StudentCtrlD.html?query=1&station=&view=new&address=";
+		form1.target="_self";
+		form1.submit();
+	}
+	//编辑
+	function Edit(value) {
+	    window.open(value, '', 'resizable=no,width=350,height=200,left=400px,top=350px');
+//	     form1.action=value;
+//		form1.target="_self";
+//		form1.submit();
+	}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<form id="form1" method="POST">
+  <input type="hidden" id="query" value="1">
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+    <tr>
+      <td><!--导航栏 开始-->
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="2%" height="24"><div align="center"><img 
+                                         src="../Images/neiye6_r8_c9.jpg" 
+                                         height="11" /></div></td>
+            <td width="98%"><font color="#0000FF">当前位置 -> 学生管理 -> 学生信息查询 -> 项目考评</font></td>
+          </tr>
+          <tr>
+            <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+          </tr>
+        </table>
+        <!--导航栏 结束--></td>
+    </tr>
+    <!--<tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+            <td width="10%">学生ID:</td>
+            <td width="20%"><input type="text" id="name" value="" 
+              size="30"/></td>
+              <td width="10%">学生姓名:</td>
+            <td width="20%"><input type="text" id="Text1" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td width="10%">参训状态:</td>
+            <td width="20%"><input type="text" id="Text2" value="" 
+              size="30"/></td>
+              <td width="10%" >参加项目:</td>
+            <td width="50%"><input type="text" id="Text3" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td colspan=5><input id="btnsearch" class="button" type="button" onClick="StartSearch();" value="检索" name="search"/>
+			<input id="btnsearch" class="button" type="button" onClick="newitem();" value="新增" name="btnnew"/></td>
+			
+          </tr>
+        </table></td>
+    </tr>-->
+    <!--<tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>-->
+    <span id="stable">
+
+    <tr>
+      <td><!--Tab 开始-->
+        <!--<table cellspacing=0 cellpadding=0 border=0>
+          <tr>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tabselectedleft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabselectedbg.png>&nbsp;
+            数据浏览&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabselectedright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tableft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabbg.png>&nbsp;<a 
+              href="#">变电站信息</a>&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+          </tr>
+        </table>-->
+        <!--Tab 结束--></td>
+    </tr>
+
+    <tr>
+      <td><table class="tbl" cellspacing=1 cellpadding=0 width="100%" border=0  align="left">
+				  	            <tr>
+            <td colspan=6>
+            <table class="tbl" cellspacing=0 cellpadding=2 width="100%" border=0 >
+                <tr>
+        <td  width="50%">&nbsp; <a href="#">1</a>&nbsp;&nbsp;</td>
+                  <td width="50%" align="right">共4条</td>
+                </tr>
+              </table>
+              </td>
+          </tr>
+          <tr>
+            <td><table class="tbl" id="details" cellspacing=1 cellpadding=0 width="100%" border=0  >
+                <tr>
+                  <th width="10%"><div align="center">项目ID</div></th>
+                  <!--<th width="40%"><div align="center">地址</div></th>-->
+                  <th width="7%"><div align="center">项目名称</div></th>
+                  <th width="5%"><div align="center">担当职务</div></th>
+                  <th width="5%"><div align="center">评价等级</div></th>
+                  <th width="20%"><div align="center">评价</div></th>
+                </tr>
+				<script type="text/javascript">
+				    var projectID = new Array('A00001', 'A00002', 'A00003', 'A00004');
+				    var projectName = new Array('C#实训', 'Java开发', '软件测试', '嵌入式开发');
+				    var job = new Array('PL', 'PG', 'SE', 'PL');
+				    var Grad = new Array('优秀', '中等', '差', '优秀');
+				    var Result = new Array('能够掌握和把握进度', '开发能够积极对待，进度正常。', '技术过硬，设计合理。', '有初步的领导能力。');
+				    for (var i = 0; i < projectID.length; i++)
+				  {
+				        document.write(" <tr>");
+				        document.write("<td width=\"10%\"><div align=\"center\">" + projectID[i] + "</div></td>");
+				        document.write("<td width=\"7%\"><div align=\"center\">" + projectName[i] + "</div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\">" + job[i] + "</div></td>");
+				        document.write("<td width=\"5%\"><div align=\"center\">" + Grad[i] + "</div></td>");
+				        document.write("<td width=\"20%\"><div align=\"center\">" + Result[i] + "</div></td>");
+				 }
+				  </script>
+				<tr>
+            <td colspan=11>
+            <table class="tbl" cellspacing=0 cellpadding=2 width="100%" border=0 >
+                <tr>
+                  <td  width="50%">&nbsp; <a href="#">1</a>&nbsp;&nbsp;</td>
+                  <td width="50%" align="right">共4条</td>
+                </tr>
+              </table>
+              </td>
+          </tr>
+				</table></td>
+          </tr>
+          </span>
+          <tr>
+            <td align="right">
+			<input id="Button1" class="button" type="button" value="导出Excel" name="btnnew"/></td>
+			
+          </tr>
+        </table>
+        <!-- test -->
+</form>
+</body>
+</html>
+

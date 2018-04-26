@@ -1,0 +1,266 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script  LANGUAGE="JavaScript">
+	//检索
+	function StartSearch()
+		{
+		    form1.action = "StudentCtrlL.html?query=1"
+		    form1.target = "_self";
+		    form1.submit();
+		}
+	//初期化
+	function init()
+	{
+	    clsTextBox();
+	    initStage();
+	    initcmbclassName();
+	    initteacherName();
+	    initcmbResultLevel();
+		if(getquerystring('query') != null)
+		{
+			document.getElementById("stable").style.visibility="visible";
+		}else{
+		document.getElementById("stable").innerHTML = "";
+        }
+
+        if (getquerystring('view') != 'view') {
+            initcmbclassName1();
+            initSex();
+        }
+	}
+	//保存
+	function save()
+	{
+	    alert("保存成功！");
+	    form1.action = "StudentCtrlL.html?query=1";
+	    form1.target = "_self";
+	    form1.submit();
+	}
+	//取消
+	function cancle() 
+	{
+	    window.close();
+	    form1.action = "StudentCtrlL.html?query=1";
+	    form1.target = "_self";
+	    form1.submit();
+	}
+	//新建
+	function newitem()
+	{
+	    form1.action = "StudentCtrlD.html?query=1&view=add";
+	    form1.target = "_self";
+	    form1.submit();
+	}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="init()">
+<form id="form1" method="POST">
+  <input type="hidden" id="query" value="1">
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+    <tr>
+      <td><!--导航栏 开始-->
+         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="2%" height="24"><div align="center"><img 
+                                         src="../Images/neiye6_r8_c9.jpg" 
+                                         height="11" /></div></td>
+             <script type="text/javascript">
+                if (getquerystring('view') == 'add') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 学生管理 -> 学生信息新增</font></td>");
+                } 
+                if (getquerystring('view') == 'view') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 学生管理 -> 学生信息查询</font></td>");
+                } 
+                if (getquerystring('view') == 'edit') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 学生管理 -> 学生信息编辑</font></td>");
+                } 
+              </script>
+          </tr>
+          <tr>
+            <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+          </tr>
+        </table>
+        <!--导航栏 结束--></td>
+    </tr>
+        <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+            <td width="10%">学生ID:</td>
+            <td width="20%"><input type="text" id="name" value="" 
+              size="30"/></td>
+              <td width="10%">学生姓名:</td>
+            <td width="20%"><input type="text" id="Text1" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td width="10%">参训状态:</td>
+            <td width="20%"><select id="cmbStage" name="cmbStage" class="boxselect"></td>
+              <td width="10%" >参加项目:</td>
+            <td width="50%"><input type="text" id="Text3" value="" 
+              size="30"/></td>
+          </tr>
+          <tr>
+            <td width="10%">班级:</td>
+            <td width="20%"><select id="className" name="className" class="boxselect"></td>
+              <td width="10%" >指导老师（PM）:</td>
+            <td width="50%"><select id="teacherName" name="teacherName" class="boxselect"></td>
+          </tr>
+           <tr>
+            <td width="10%">评价等级:</td>
+            <td width="20%" colspan="3"><select id="cmbResultLevel" name="cmbResultLevel" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td colspan=5><input id="btnsearch" class="button" type="button" onClick="StartSearch();" value="检索" name="search"/>
+			<input id="btnsearch" class="button" type="button" onClick="newitem();" value="新增" name="btnnew"/>
+			</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>
+    <span id="stable" style="visibility:hidden">
+        <tr>
+      <td><!--Tab 开始-->
+        <table cellspacing=0 cellpadding=0 border=0>
+          <tr>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tabselectedleft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabselectedbg.png>&nbsp;
+            <a href="StudentCtrlL.html?query=1">
+            学生信息一览</a>&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabselectedright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tableft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabbg.png>&nbsp;
+            学生信息</a>&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+          </tr>
+        </table>
+        <!--Tab 结束--></td>
+    </tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 cellpadding=1 width="100%" border=0  align="left">
+        <tr>
+           <td width="10%">学生ID：</td> 
+            <td width="40%">
+              <script type="text/javascript">
+				if(getquerystring('view')=='view') {
+				    document.write(" <input type=\"text\" id=\"SSID\" value=\"" + getquerystring('SSID') + "\" readonly==\"true\" size=\"30\"/> ");
+				}else{
+				document.write(" <input type=\"text\" id=\"SSID\" value=\"" + getquerystring('SSID') + "\" size=\"30\"/> <font Color='Red'>*</font>");
+				}
+              </script>
+              </td> 
+              <td width='50%' rowspan=10 align=left>
+              <div><img id="Photo" src="../Images/UserPhoto.bmp"></div>
+              <script type="text/javascript">
+                  if (getquerystring('view') != 'view') {
+                      document.write("<div><input type=\"file\" id=\"PhotoFile\" name=\"PhotoFile\" onChange=\"PhotoOnchang();\"/></div></td>");
+                  } 
+              </script>
+              </td>
+              </td>
+          </tr> 
+          <tr>
+           <td>学生姓名：</td> 
+            <td>
+              	<script type="text/javascript">
+              	    if (getquerystring('view') == 'view') {
+              	        document.write(" <input type=\"text\" id=\"name\" value=\"" + getquerystring('name') + "\" readonly==\"true\" size=\"30\"/> ");
+              	    } else {
+              	    document.write(" <input type=\"text\" id=\"name\" value=\"" + getquerystring('name') + "\" size=\"30\"/> <font Color='Red'>*</font>");
+              	    }
+              </script>
+              </td> 
+          </tr>
+          </span>
+  <tr>
+    <td>性别：</td>
+    <td><div align="left">
+              
+              <script type="text/javascript">
+                  if (getquerystring('view') != 'view') {
+                      document.write("<select id=\"cmbSex\" name=\"cmbSex\" class=\"boxselect\"></select> ");
+                      document.write(" <font Color='Red'>*</font> ");
+                  }
+                  else
+                  {
+                      document.write(" <input type=\"text\" id=\"name\" value=\"男\" readonly=\"true\" size=\"30\"/> ");
+                  }
+              </script>
+              
+              </div>
+      </td> 
+      </tr> 
+      <tr>
+           <td>班级：</td> 
+            <td>
+              	<script type="text/javascript">
+              	    if (getquerystring('view') == 'view') {
+              	        document.write(" <input type=\"text\" id=\"dept\" value=\"" + getquerystring('dept') + "\" readonly==\"true\" size=\"30\"/> ");
+              	    } else {
+              	    document.write(" <select id=\"className1\" name=\"className1\" class=\"boxselect\"> <font Color='Red'>*</font>");
+              	    }
+              </script>
+              </td> 
+          </tr>
+          <tr>
+           <td>邮件地址：</td> 
+            <td>
+              	<script type="text/javascript">
+              	    if (getquerystring('view') == 'view') {
+              	        document.write(" <input type=\"text\" id=\"dept\" value=\"" + "chenchongsky777@163.com" + "\" readonly==\"true\" size=\"30\"/> ");
+              	    } else {
+              	    document.write(" <input type=\"text\" id=\"dept\" value=\"" + "chenchongsky777@163.com" + "\" size=\"30\"/> <font Color='Red'>*</font>");
+              	    }
+              </script>
+              </td> 
+          </tr>
+                <script type="text/javascript">
+                    if (getquerystring('view') == 'add') {
+                        document.write("<tr>");
+                        document.write("<td>初始密码：</td>");
+                        document.write("<td>");
+                        document.write(" <input type=\"password\" id=\"name\" value=\"\" size=\"30\"/> <font Color='Red'>*</font>");
+                        document.write("</td>");
+                        document.write("</tr>");
+                    }
+      </script>
+        <script type="text/javascript">
+							if(getquerystring('view')!='view') {
+									document.write("<tr>");
+									document.write("<td colspan=2>");
+									if(getquerystring('view') =='del') {
+												document.write("<input id=\"btnsearch\" class=\"button\" type=\"button\" onClick=\"save();\" value=\"删除\" name=\"btnsave\"/>");
+									}else{
+											document.write("<input id=\"btnsearch\" class=\"button\" type=\"button\" onClick=\"save();\" value=\"确定\" name=\"btnsave\"/>");
+									}
+								
+									document.write("<input id=\"btnsearch\" class=\"button\" type=\"button\" onClick=\"cancle();\" value=\"取消\" name=\"btncancle\"/>");
+									document.write("</td>");
+									document.write("</tr>");
+							}
+      </script>
+        </table>
+        <!-- test --></td>
+    </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+</form>
+</body>
+</html>

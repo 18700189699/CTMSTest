@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasofti.ctms.dao.TeacherDao">
+	<!-- namespace直接是接口的完整包名-->
+	
+	<!-- 添加方法 -->
+	<insert id="insertTeacher" parameterType="teacher">
+		insert into teacher 
+		values
+		(#{teacherId},
+		#{teacherName},
+		#{teacherSex},
+		#{teacherContaxt},
+		#{status},
+		#{permission},
+		#{teacherZige},
+		#{teacherEmail},
+		#{teacherUse},
+		#{teacherPic},
+		#{password})
+	</insert>
+	<!-- 创建关联关系 -->
+	<resultMap type="teacher" id="teacherMap">
+		<id property="teacherId" column="TEACHER_ID"/>
+		<result property="teacherName" column="TEACHER_NAME"/>
+		<result property="teacherSex" column="TEACHER_SEX"/>
+		<result property="teacherContaxt" column="TEACHER_CONTAXT"/>
+		<result property="status" column="STATUS"/>
+		<result property="permission" column="PERMISSION"/>
+		<result property="teacherZige" column="TEACHER_ZIGE"/>
+		<result property="teacherEmail" column="TEACHER_EMAIL"/>
+		<result property="teacherUse" column="TEACHER_USE"/>
+		<result property="teacherPic" column="TEACHER_PIC"/>
+		<result property="password" column="PASSWORD"/>
+	</resultMap>
+	
+	<!-- 登录 -->
+	<!-- <select id="findByName" parameterType="user" resultMap="teacherMap">
+		select * from teacher where teacher_id = #{userId} and password = #{userPwd}
+	</select> -->
+	
+	<select id="findByName" parameterType="user" resultMap="teacherMap">
+		select * from teacher where teacher_id = #{userId} and PASSWORD = #{userPwd}
+	</select> 
+	
+	<!-- 修改密码 -->
+	<!-- <update id="updatePwd" parameterType="user" >
+		update teacher set password=#{userPwd} where teacher_id=#{userId}
+	</update> -->
+	<update id="updatePwd" parameterType="user">
+		update teacher set password=#{userPwd} where teacher_id=#{userId}
+	</update>
+	
+	<!-- 做分页 -->
+	<select id="findTeacherByPage" parameterType="user" resultMap="teacherMap">
+		select * from (select t.*,ROWNUM xuhao from 
+		(select * from teacher
+			<where>
+				<if test="userId!='' and userId!=null">
+					and TEACHER_ID=#{userId}
+				</if>
+				<if test="userName!=null and userName!=''">
+					and TEACHER_NAME like concat('%',concat(#{userName},'%'))
+				</if>
+			</where> order by TEACHER_NAME
+		) t where ROWNUm&lt;=#{end})
+		where xuhao>=#{start}
+	</select>
+	
+	<!-- 查询总记录数 -->
+	<select id="getCount" parameterType="user" resultType="int">
+		select count(*) from (select t.*,rownum xuhao from 
+		(select * from teacher
+			<where>
+				<if test="userId!='' and userId!=null">
+					and TEACHER_ID=#{userId}
+				</if>
+				<if test="userName!=null and userName!=''">
+					and TEACHER_NAME like concat('%',concat(#{userName},'%'))
+				</if>
+			</where> order by TEACHER_NAME
+		) t where rownum&lt;=#{end})
+		where xuhao>=#{start}		
+	</select>
+</mapper>

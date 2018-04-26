@@ -1,0 +1,43 @@
+8
+
+dir
+1027
+http://192.168.145.2:8080/svn/MSD/00-DOC/04-System%20Design%20&%20Implement/%E5%9F%BA%E6%9C%AC%E8%AE%BE%E8%AE%A1/%E9%A1%B5%E9%9D%A2DEMO/TrainingDEMO/Css/ui-lightness
+http://192.168.145.2:8080/svn/MSD
+
+
+
+2009-12-09T10:05:46.031250Z
+157
+chenc
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b76bcdc4-3dde-f048-846b-2a7f45053dc4
+
+images
+dir
+
+jquery-ui-1.7.2.custom.css
+file
+
+
+
+
+2009-09-04T05:57:52.000000Z
+d1d63456eee34da130f23d93b3498a44
+2009-11-30T06:35:46.812500Z
+85
+wug
+

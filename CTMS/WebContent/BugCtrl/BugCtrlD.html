@@ -1,0 +1,276 @@
+<html>
+<head>
+<title>测试页面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="../Css/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Css/cupertino/jquery-ui-1.7.2.custom.css" rel="stylesheet" 
+type="text/css" media="all">
+<script type="text/javascript" src="../Js/Common.js"></script>
+<script  LANGUAGE="JavaScript">
+	//检索
+	function StartSearch()
+	{
+	    form1.action = "BugCtrlL.html?query=1"
+			form1.target="_self";
+			form1.submit();
+	}
+	//新建
+	function newitem() 
+	{
+	    form1.action = "BugCtrlD.html?query=1&station=&view=add";
+		form1.target="_self";
+		form1.submit();
+	}
+	//编辑
+	function Edit(value) {
+	    window.open(value, '', 'resizable=no,width=350,height=200,left=400px,top=350px');
+//	     form1.action=value;
+//		form1.target="_self";
+//		form1.submit();
+	}
+	function init() {
+	    initObjectStage();
+	    initBugStatus1();
+	    initStage();
+	    initBugCreater();
+	    initBugCreater1();
+	    initBugType1();
+	    initBugType();
+	    initBugStatus();
+	    initBugLevel();
+	    initBugCreater2();
+	    initcmbQuestionType();
+	    initcmbQuestionType1();
+	}
+	
+		//保存
+	function save()
+	{
+	    alert("保存成功！");
+	    form1.action = "BugCtrlL.html?query=1";
+	    form1.target = "_self";
+	    form1.submit();
+	}
+	//取消
+	function cancle() 
+	{
+	    window.close();
+	    form1.action = "BugCtrlL.html?query=1";
+	    form1.target = "_self";
+	    form1.submit();
+	}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="init();">
+<form id="form1" method="POST">
+  <input type="hidden" id="query" value="1">
+  <table cellspacing=0 cellpadding=0 width="100%" border=0  align="center">
+    <tr>
+      <td><!--导航栏 开始-->
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="2%" height="24"><div align="center"><img 
+                                         src="../Images/neiye6_r8_c9.jpg" 
+                                         height="11" /></div></td>
+           <script type="text/javascript">
+                if (getquerystring('view') == 'add') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 问题管理系统 -> 问题信息新增</font></td>");
+                } 
+                if (getquerystring('view') == 'view') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 问题管理系统 -> 问题信息查询</font></td>");
+                } 
+                if (getquerystring('view') == 'edit') {
+                    document.write("<td width=\"98%\"><font color=\"#0000FF\">当前位置 -> 问题管理系统 -> 问题信息编辑</font></td>");
+                } 
+              </script>
+            
+          </tr>
+          <tr>
+            <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+          </tr>
+        </table>
+        <!--导航栏 结束--></td>
+    </tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+              <td width="10%">项目名称:</td>
+            <td width="20%"><input type="text" id="Text1" value="" 
+              size="30"/></td>
+            <td width="10%" >项目状态:</td>
+            <td width="50%"><select id="Select3" name="cmbObjectStage" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td width="10%">NO:</td>
+            <td width="20%"><input type="text" id="Text2" value="" 
+              size="30"/></td>
+              <td width="10%" >解决状态:</td>
+            <td width="50%"><select id="Select1" name="cmbBugStatus1" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td width="10%">阶段:</td>
+            <td width="20%"><select id="cmbStage" name="cmbStage" class="boxselect"></td>
+              <td width="10%" >错误类型:</td>
+            <td width="50%"><select id="Select2" name="cmbBugType1" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td width="10%">创建者:</td>
+            <td width="20%"><select id="cmbBugCreater" name="cmbBugCreater" class="boxselect"></td>
+              <td width="10%" >解决者:</td>
+            <td width="50%">
+            <select id="cmbBugCreater1" name="cmbBugCreater1" class="boxselect">
+            </td>
+          </tr>
+          <tr>
+            <td width="10%">问题分类:</td>
+            <td width="20%" colspan=3><select id="cmbQuestionType" name="cmbQuestionType" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td colspan=5><input id="Button2" class="button" type="button" onclick="StartSearch()" value="检索" name="search"/>
+			<input id="btnsearch" class="button" type="button" onClick="newitem('BugCtrlD.html?query=1&view=add');" value="新增" name="btnnew"/>
+			<input id="Button1" class="button" type="button" value="导出Excel" name="bntExcel"/></td>
+			
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td height="2" colspan="2"><hr size="1" noshade="noshade" /></td>
+    </tr>
+        <tr>
+      <td>
+        <table cellspacing=0 cellpadding=0 border=0>
+          <tr>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tableft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabbg.png>&nbsp;<a 
+              href="BugCtrlL.html?query=1">问题信息一览</a>&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+            <td valign=center width=3 height=28><img height=28 alt="" 
+            src="../Images/tabselectedleft.png" width=3 border=0></td>
+            <td valign=center nowrap background=../Images/tabselectedbg.png>&nbsp;
+            问题信息操作&nbsp;</td>
+            <td valign=center width=3><img height=28 alt="" 
+            src="../Images/tabselectedright.png" width=3 border=0></td>
+            <td class=tabsp width=3><img height=1  src="../Images/shim.gif" 
+            width=1></td>
+          </tr>
+        </table>
+        </td>
+    </tr>
+    <tr>
+      <td><table class="tbl" cellspacing=1 width="100%" cellpadding=0 border=0>
+          <tr>
+            <td width="10%">NO:</td>
+            <td width="40%">
+            <script type="text/javascript">
+                if (getquerystring('view') == 'view') {
+                    document.write(" <input type=\"text\" id=\"BugID\" value=\"" + getquerystring('BugID') + "\" readonly==\"true\" size=\"20\"/> ");
+                } else {
+                    document.write(" <input type=\"text\" id=\"BugID\" value=\"\" size=\"20\"/> <font Color='Red'>*</font>");
+                }
+              </script>
+            </td>
+              <td width="10%">项目名称:</td>
+            <td width="40%">
+            <script type="text/javascript">
+                document.write(" <input type=\"text\" id=\"name\" value=\"" + "追加画面确认按钮" + "\" readonly==\"true\" size=\"50\"/> ");
+              </script>
+            </td>
+          </tr>
+          <tr>
+            <td width="10%">问题分类:</td>
+            <td width="20%" colspan=3><select id="cmbQuestionType1" name="cmbQuestionType1" class="boxselect"></td>
+          </tr>
+          <tr>
+            <td width="10%">指派解决人:</td>
+            <td width="40%">
+            <select id="cmbBugCreater2" name="cmbBugCreater2" class="boxselect"></select> <font Color='Red'>*</font>
+            </td>
+            <td width="10%">问题记录:</td>
+            <td width="40%" rowspan=3>
+              <script type="text/javascript">
+                  if (getquerystring('view') == 'view') {
+                      document.write("<textarea id=\"BugContent\" cols=\"50\" rows=\"5\" readonly==\"true\" value='' readonly='true'></textarea>");
+                      //form1.TextArea1.value = getquerystring('BugContent');
+                  } else {
+                  document.write("<textarea id=\"BugContent\" cols=\"50\" rows=\"5\" value=''></textarea>");
+                  }
+              </script>
+            </td>
+           </tr>
+           <tr>
+            <td width="10%">错误类型:</td>
+            <td width="40%" colspan=2>
+            <select id="cmbBugType" name="cmbBugType" class="boxselect"> <font Color='Red'>*</font>
+            </td>
+           </tr>
+           <tr>
+            <td width="10%">版本号:</td>
+            <td width="40%" colspan=2>
+            <script type="text/javascript">
+                if (getquerystring('view') == 'view') {
+                    document.write(" <input type=\"text\" id=\"VNo\" value=\"" + "20010101" + "\" readonly==\"true\" size=\"20\"/> ");
+                } else {
+                    document.write(" <input type=\"text\" id=\"VNo\" value=\"" + "20010101" + "\" size=\"20\"/> <font Color='Red'>*</font>");
+                }
+              </script>
+            </td>
+           </tr>
+           <tr>
+            <td width="10%">解决状态:</td>
+            <td width="40%">
+            <select id="cmbBugStatus" name="cmbBugStatus" class="boxselect"><font Color='Red'>*</font>
+            </td>
+            <td width="10%">问题内容:</td>
+            <td width="40%" rowspan=3>
+              <script type="text/javascript">
+                  if (getquerystring('view') == 'view') {
+                      document.write("<textarea id=\"BugContent\" cols=\"50\" rows=\"5\" value=''></textarea>");
+                      //form1.TextArea1.value = getquerystring('BugContent');
+                  } else {
+                      document.write("<textarea id=\"BugContent\" cols=\"50\" rows=\"5\" value=''></textarea>");
+                  }
+              </script>
+            </td>
+           </tr>
+           <tr>
+            <td width="10%">优先级:</td>
+            <td width="40%" colspan=2>
+            <select id="cmbBugLevel" name="cmbBugLevel" class="boxselect"> <font Color='Red'>*</font>
+            </td>
+           </tr>
+           <tr>
+            <td width="10%">严重程度:</td>
+            <td width="40%" colspan=2>
+            <script type="text/javascript">
+                if (getquerystring('view') == 'view') {
+                    document.write(" <input type=\"text\" id=\"Serious\" value=\"" + "高" + "\" readonly==\"true\" size=\"20\"/> ");
+                } else {
+                    document.write(" <input type=\"text\" id=\"Serious\" value=\"" + "高" + "\" size=\"20\"/> <font Color='Red'>*</font>");
+                }
+              </script>
+            </td>
+           </tr>
+           <script type="text/javascript">
+                   document.write("<tr>");
+                   document.write("<td colspan=4>");
+                   document.write("<input id=\"btnsearch\" class=\"button\" type=\"button\" onClick=\"save();\" value=\"确定\" name=\"btnsave\"/>");
+                   document.write("<input id=\"btnsearch\" class=\"button\" type=\"button\" onClick=\"cancle();\" value=\"取消\" name=\"btncancle\"/>");
+
+                   if (getquerystring('view') == 'view') {
+                       document.write("<input id=\"btnsearch\" class=\"button\" type=\"button\" onClick=\"cancle();\" value=\"关闭\" name=\"btncancle\"/> ");
+                   }
+                   
+                   document.write("</td>");
+                   document.write("</tr>");
+          </script>
+        </table></td>
+    </tr>
+        <!-- test -->
+</form>
+</body>
+</html>
+
